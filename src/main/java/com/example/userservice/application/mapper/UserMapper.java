@@ -1,8 +1,7 @@
-package com.example.userservice.application;
+package com.example.userservice.application.mapper;
 
 import com.example.userservice.domain.entity.User;
-import com.example.userservice.presentation.request.UserRequest;
-import com.example.userservice.presentation.response.UserResponse;
+import com.example.userservice.presentation.dto.UserCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -16,20 +15,24 @@ public class UserMapper {
 
     private final PasswordEncoder passwordEncoder;
 
-    public User userRequestToUser(UserRequest userRequest) {
-        return Optional.ofNullable(userRequest)
+    public User UserCreateDtoRequestToUser(UserCreateDto.Request userCreateDtoRequest) {
+        return Optional.ofNullable(userCreateDtoRequest)
                 .map(request -> User.builder()
                         .email(request.getEmail())
                         .name(request.getName())
-                        .userId(UUID.randomUUID().toString())
-                        .encryptedPwd(passwordEncoder.encode(userRequest.getPassword()))
+                        .userId(createUserId())
+                        .encryptedPwd(passwordEncoder.encode(userCreateDtoRequest.getPassword()))
                         .build())
                 .orElseThrow(() -> new IllegalStateException("userRequest cannot be null"));
     }
 
-    public UserResponse userToUserResponse(User paramUser) {
+    private String createUserId() {
+        return UUID.randomUUID().toString();
+    }
+
+    public UserCreateDto.Response UserToUserCreateDtoResponse(User paramUser) {
         return Optional.ofNullable(paramUser)
-                .map(user -> UserResponse.builder()
+                .map(user -> UserCreateDto.Response.builder()
                         .email(user.getEmail())
                         .name(user.getName())
                         .userId(user.getUserId())
