@@ -1,7 +1,7 @@
-package com.example.userservice.presentation;
+package com.example.userservice.user.presentation;
 
-import com.example.userservice.application.UserService;
-import com.example.userservice.presentation.dto.UserCreateDto;
+import com.example.userservice.user.application.UserService;
+import com.example.userservice.user.presentation.dto.UserCreateDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;

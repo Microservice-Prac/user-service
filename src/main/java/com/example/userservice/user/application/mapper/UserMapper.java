@@ -1,7 +1,7 @@
-package com.example.userservice.application.mapper;
+package com.example.userservice.user.application.mapper;
 
-import com.example.userservice.domain.entity.User;
-import com.example.userservice.presentation.dto.UserCreateDto;
+import com.example.userservice.user.domain.entity.UserEntity;
+import com.example.userservice.user.presentation.dto.UserCreateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,9 +15,9 @@ public class UserMapper {
 
     private final PasswordEncoder passwordEncoder;
 
-    public User UserCreateDtoRequestToUser(UserCreateDto.Request userCreateDtoRequest) {
+    public UserEntity UserCreateDtoRequestToUser(UserCreateDto.Request userCreateDtoRequest) {
         return Optional.ofNullable(userCreateDtoRequest)
-                .map(request -> User.builder()
+                .map(request -> UserEntity.builder()
                         .email(request.getEmail())
                         .name(request.getName())
                         .userId(createUserId())
@@ -30,8 +30,8 @@ public class UserMapper {
         return UUID.randomUUID().toString();
     }
 
-    public UserCreateDto.Response UserToUserCreateDtoResponse(User paramUser) {
-        return Optional.ofNullable(paramUser)
+    public UserCreateDto.Response UserToUserCreateDtoResponse(UserEntity userEntity) {
+        return Optional.ofNullable(userEntity)
                 .map(user -> UserCreateDto.Response.builder()
                         .email(user.getEmail())
                         .name(user.getName())

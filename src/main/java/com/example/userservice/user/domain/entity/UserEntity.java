@@ -1,4 +1,4 @@
-package com.example.userservice.domain.entity;
+package com.example.userservice.user.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "users")
 @Entity
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
