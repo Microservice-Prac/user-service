@@ -1,7 +1,7 @@
 package com.example.userservice.user.presentation;
 
 import com.example.userservice.user.application.UserService;
-import com.example.userservice.user.presentation.dto.UserCreateDto;
+import com.example.userservice.user.presentation.dto.UserDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
@@ -28,9 +28,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createUser(@Valid @RequestBody UserCreateDto.Request userCreateDtoRequest) {
-        UserCreateDto.Response userCreateDtoResponse = userService.createUser(userCreateDtoRequest);
+    public ResponseEntity<Object> createUser(@Valid @RequestBody UserDto.CreateRequest userDtoCreateRequest) {
+        userService.createUser(userDtoCreateRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userCreateDtoResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
