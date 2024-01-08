@@ -2,6 +2,7 @@ package com.example.userservice.user.presentation.dto;
 
 import com.example.userservice.core.util.EncryptedUtil;
 import com.example.userservice.core.util.ModelMapperUtil;
+import com.example.userservice.core.vo.Order;
 import com.example.userservice.user.domain.entity.UserEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
@@ -9,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -53,6 +55,8 @@ public class UserDto {
         private String email;
         private String name;
         private String userId;
+        private LocalDateTime createAt;
+        private List<Order> orders;
 
         public static Response of(UserEntity userEntity) {
             return ModelMapperUtil.modelMapper().map(userEntity, Response.class);

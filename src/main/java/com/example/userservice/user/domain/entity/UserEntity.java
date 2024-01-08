@@ -1,7 +1,10 @@
 package com.example.userservice.user.domain.entity;
 
+import com.example.userservice.core.vo.Order;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Builder
@@ -26,4 +29,11 @@ public class UserEntity {
 
     @Column(nullable = false, unique = true)
     private String encryptedPwd;
+
+    @Transient
+    private List<Order> orders;
+
+    public void saveUserOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
