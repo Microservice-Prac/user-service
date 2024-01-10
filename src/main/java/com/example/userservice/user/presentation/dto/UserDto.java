@@ -2,7 +2,7 @@ package com.example.userservice.user.presentation.dto;
 
 import com.example.userservice.core.util.EncryptedUtil;
 import com.example.userservice.core.util.ModelMapperUtil;
-import com.example.userservice.core.vo.Order;
+import com.example.userservice.api.dto.Order;
 import com.example.userservice.user.domain.entity.UserEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;

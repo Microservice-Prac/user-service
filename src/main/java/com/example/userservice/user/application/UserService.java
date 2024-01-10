@@ -2,7 +2,7 @@ package com.example.userservice.user.application;
 
 import com.example.userservice.user.domain.entity.UserEntity;
 import com.example.userservice.user.infrastructure.UserRepository;
-import com.example.userservice.core.vo.Order;
+import com.example.userservice.api.dto.Order;
 import com.example.userservice.user.presentation.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

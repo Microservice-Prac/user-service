@@ -1,18 +1,20 @@
-package com.example.userservice.core.vo;
+package com.example.userservice.api.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Order {
+public class Order implements Serializable {
     private String productId;
     private Integer quantity;
     private Integer unitPrice;
     private Integer totalPrice;
-    private LocalDateTime createdAt;
     private String orderId;
+    private LocalDateTime createdAt;
 }
