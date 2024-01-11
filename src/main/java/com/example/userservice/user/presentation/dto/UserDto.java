@@ -36,11 +36,14 @@ public class UserDto {
         private String password;
 
         public UserEntity toEntity() {
+            String userId = UUID.randomUUID().toString();
+            String encryptedPwd = EncryptedUtil.passwordEncoder().encode(this.password);
+
             return UserEntity.builder()
                     .email(this.email)
                     .name(this.name)
-                    .userId(UUID.randomUUID().toString())
-                    .encryptedPwd(EncryptedUtil.passwordEncoder().encode(this.password))
+                    .userId(userId)
+                    .encryptedPwd(encryptedPwd)
                     .build();
         }
     }
