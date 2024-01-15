@@ -1,6 +1,7 @@
 package com.example.userservice.user.application;
 
-import com.example.userservice.user.domain.entity.UserEntity;
+import com.example.userservice.user.application.model.User;
+import com.example.userservice.user.domain.UserEntity;
 import com.example.userservice.user.infrastructure.UserRepository;
 import com.example.userservice.api.dto.Order;
 import com.example.userservice.user.presentation.dto.UserDto;
@@ -21,8 +22,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void createUser(UserDto.CreateRequest userDtoCreateRequest) {
-        UserEntity userEntity = userDtoCreateRequest.toEntity();
+    public void createUser(User user) {
+        UserEntity userEntity = user.toEntity();
         userRepository.save(userEntity);
     }
 

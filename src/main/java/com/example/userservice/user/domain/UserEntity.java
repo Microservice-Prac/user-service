@@ -1,4 +1,4 @@
-package com.example.userservice.user.domain.entity;
+package com.example.userservice.user.domain;
 
 import com.example.userservice.api.dto.Order;
 import jakarta.persistence.*;

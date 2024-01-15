@@ -1,9 +1,9 @@
 package com.example.userservice.user.presentation.dto;
 
-import com.example.userservice.core.util.EncryptedUtil;
-import com.example.userservice.core.util.ModelMapperUtil;
 import com.example.userservice.api.dto.Order;
-import com.example.userservice.user.domain.entity.UserEntity;
+import com.example.userservice.core.util.ModelMapperUtil;
+import com.example.userservice.user.application.model.User;
+import com.example.userservice.user.domain.UserEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +12,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class UserDto {
@@ -35,15 +34,11 @@ public class UserDto {
         @Size(min = 8, message = "Password must be equal or grater than 8 characters")
         private String password;
 
-        public UserEntity toEntity() {
-            String userId = UUID.randomUUID().toString();
-            String encryptedPwd = EncryptedUtil.passwordEncoder().encode(this.password);
-
-            return UserEntity.builder()
-                    .email(this.email)
-                    .name(this.name)
-                    .userId(userId)
-                    .encryptedPwd(encryptedPwd)
+        public User toModel() {
+            return User.builder()
+                    .email(email)
+                    .name(name)
+                    .password(password)
                     .build();
         }
     }
